@@ -1,0 +1,22 @@
+class Solution
+{
+public:
+    bool isPossible(long long a[], long long b[], long long n, long long k)
+    {
+        // Your code goes here
+        long long int cnt = 0;
+        sort(a, a + n);
+        sort(b, b + n, greater<int>());
+        for (long long int i = 0; i < n; i++)
+        {
+            if (a[i] + b[i] >= k)
+                cnt++;
+            else
+                break;
+        }
+        if (cnt != n)
+            return 0;
+        else
+            return 1;
+    }
+};
