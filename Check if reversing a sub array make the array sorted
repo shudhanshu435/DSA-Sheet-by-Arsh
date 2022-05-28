@@ -1,0 +1,58 @@
+// Check if reversing a sub array make the array sorted
+// Given an array of distinct n integers.The task is to check whether reversing one sub - array make the array sorted or not.If the array is already sorted or by reversing a subarray once make it sorted,print “Yes”,else print “No”.
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n];
+    vector<int> vec, tec;
+    cout << "Enter elements of array:" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+        vec.push_back(arr[i]);
+    }
+    tec = vec;
+    sort(vec.begin(), vec.end());
+    if (tec == vec)
+        cout << "Yes" << endl;
+    else
+    {
+        int str = 0, las = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (vec[i] != tec[i])
+            {
+                str = i;
+                break;
+            }
+        }
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (vec[i] != tec[i])
+            {
+                las = i;
+                break;
+            }
+        }
+        cout << str << " " << las << endl;
+        int cnt = 0;
+        for (int i = str; i < las; i++)
+        {
+            if (tec[i] < tec[i + 1])
+            {
+                cnt = 1;
+                break;
+            }
+        }
+        if (cnt == 1)
+            cout << "No" << endl;
+        else
+            cout << "Yes" << endl;
+    }
+    return 0;
+}
