@@ -1,0 +1,38 @@
+bool findPair(int arr[], int size, int n)
+{
+    // code
+
+    vector<int> vec;
+    int snd = 0;
+    for (int i = 0; i < size; i++)
+    {
+        vec.push_back(arr[i]);
+    }
+    sort(vec.begin(), vec.end());
+    
+    //this loop for finding any duplicate elements are there in the array
+    for (int i = 0; i < size; i++)
+    {
+        if ((vec[i] == vec[i + 1]) && (i != size - 1))
+            snd++;
+    }
+    //if duplicate elements are there and n==0
+    if (n == 0 && snd > 0)
+        return 1;
+    //if duplicate elements are not there
+    else if (n == 0 && snd == 0)
+        return 0;
+    int cnt = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (find(vec.begin(), vec.end(), n + vec[i]) != vec.end())
+        {
+            cnt = 1;
+            break;
+        }
+    }
+    if (cnt == 1)
+        return 1;
+    else
+        return 0;
+}
